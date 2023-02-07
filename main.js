@@ -18,7 +18,7 @@ const scene = new THREE.Scene()
 const textureLoader = new THREE.TextureLoader()
 
 // Texture
-const bakedTexture = textureLoader.load("./bake.png")
+const bakedTexture = textureLoader.load("./RedSoftMetalUVBake.png")
 bakedTexture.flipY = false
 
 // baked material
@@ -33,9 +33,8 @@ dracoLoader.setDecoderPath("/draco/")
 const gltfLoader = new GLTFLoader()
 gltfLoader.setDRACOLoader(dracoLoader)
 
-gltfLoader.load("./test.glb", (gltf) => {
+gltfLoader.load("./BottleCap.glb", (gltf) => {
   // gltf.scene.scale.set(0.025, 0.025, 0.025)
-  console.log(gltf)
 
   gltf.scene.traverse((child) => {
     child.material = bakedMaterial
@@ -49,7 +48,7 @@ gltfLoader.load("./test.glb", (gltf) => {
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
 scene.add(ambientLight)
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6)
+const directionalLight = new THREE.DirectionalLight(0xffffff, 2)
 directionalLight.castShadow = true
 directionalLight.shadow.mapSize.set(1024, 1024)
 directionalLight.shadow.camera.far = 15
