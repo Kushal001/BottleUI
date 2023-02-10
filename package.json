@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -12,6 +12,7 @@
     "vite": "^4.1.0"
   },
   "dependencies": {
+    "dat.gui": "^0.7.9",
     "three": "^0.149.0"
   }
 }
