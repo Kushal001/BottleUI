@@ -5,7 +5,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import * as dat from "dat.gui"
 
 // Debug
-const gui = new dat.GUI()
+// const gui = new dat.GUI()
 
 /**
  * Base
@@ -22,7 +22,7 @@ scene.background = new THREE.Color(0xd6d6d3)
 const textureLoader = new THREE.TextureLoader()
 
 // Texture
-const bakedTexture = textureLoader.load("./MusgraveBottleBake.jpg")
+const bakedTexture = textureLoader.load("./static/Textures/TextureRedMetal.jpg")
 bakedTexture.flipY = false
 
 // baked material
@@ -33,7 +33,7 @@ const bakedMaterial = new THREE.MeshBasicMaterial({ map: bakedTexture })
  */
 const gltfLoader = new GLTFLoader()
 
-gltfLoader.load("./BottleJoined.glb", (gltf) => {
+gltfLoader.load("./static/Models/Bottle.glb", (gltf) => {
   gltf.scene.traverse((child) => {
     child.material = bakedMaterial
   })
@@ -86,9 +86,9 @@ camera.position.set(0, 0.25, 3.5)
 scene.add(camera)
 
 // Debug
-gui.add(camera.position, "x").min(0).max(20).step(0.25).name("XCameraPosition")
-gui.add(camera.position, "y").min(0).max(20).step(0.25).name("YCameraPosition")
-gui.add(camera.position, "z").min(0).max(20).step(0.25).name("ZCameraPosition")
+// gui.add(camera.position, "x").min(0).max(20).step(0.25).name("XCameraPosition")
+// gui.add(camera.position, "y").min(0).max(20).step(0.25).name("YCameraPosition")
+// gui.add(camera.position, "z").min(0).max(20).step(0.25).name("ZCameraPosition")
 
 // Controls
 const controls = new OrbitControls(camera, canvas)
