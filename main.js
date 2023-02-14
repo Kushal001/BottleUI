@@ -17,6 +17,7 @@ import * as dat from "dat.gui"
 const canvas = document.querySelector("canvas.webgl")
 
 // Scene
+let model
 const scene = new THREE.Scene()
 scene.background = new THREE.Color(0xd6d6d3)
 
@@ -24,11 +25,50 @@ scene.background = new THREE.Color(0xd6d6d3)
 const textureLoader = new THREE.TextureLoader()
 
 // Texture
-const bakedTexture = textureLoader.load("./static/Textures/TextureRedMetal.jpg")
-bakedTexture.flipY = false
+const bakedRedMetalTexture = textureLoader.load(
+  "./static/Textures/TextureRedMetal.jpg"
+)
+bakedRedMetalTexture.flipY = false
+
+const bakedMusgraveTexture = textureLoader.load(
+  "./static/Textures/TextureMusgrave.jpg"
+)
+bakedMusgraveTexture.flipY = false
+
+const bakedFabricTexture = textureLoader.load(
+  "./static/Textures/TextureFabric.jpg"
+)
+bakedFabricTexture.flipY = false
 
 // baked material
-const bakedMaterial = new THREE.MeshBasicMaterial({ map: bakedTexture })
+const bakedMaterial = new THREE.MeshBasicMaterial({ map: bakedFabricTexture })
+bakedMaterial.needsUpdate = true
+
+// change material
+const redMetalSelector = document.querySelector("#change-red-metal")
+const musgraveSelector = document.querySelector("#change-musgrave")
+const fabricSelector = document.querySelector("#change-fabric")
+
+redMetalSelector.addEventListener("click", () => {
+  changeMaterial("red-metal", bakedRedMetalTexture)
+})
+musgraveSelector.addEventListener("click", () => {
+  changeMaterial("musgrave", bakedMusgraveTexture)
+})
+fabricSelector.addEventListener("click", () => {
+  changeMaterial("fabric", bakedFabricTexture)
+})
+
+const changeMaterial = (type = "red-metal", texture = bakedRedMetalTexture) => {
+  if (model) {
+    const bakedMaterial = new THREE.MeshBasicMaterial({
+      map: texture,
+    })
+    model.traverse((o) => {
+      if (o.isMesh) o.material = bakedMaterial
+    })
+  }
+}
 
 /**
  * Models
@@ -38,18 +78,12 @@ const gltfLoader = new GLTFLoader()
 gltfLoader.load("./static/Models/Bottle.glb", (gltf) => {
   gltf.scene.traverse((child) => {
     child.material = bakedMaterial
+    // child.material.needsUpdate = true
   })
 
-  scene.add(gltf.scene)
+  model = gltf.scene
+  scene.add(model)
 })
-
-// // Test
-// const mesh = new THREE.Mesh(
-//   new THREE.BoxGeometry(1, 1),
-//   new THREE.MeshBasicMaterial()
-// )
-
-// scene.add(mesh)
 
 /**
  * Sizes

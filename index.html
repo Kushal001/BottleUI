@@ -16,7 +16,35 @@
       <div class="caption">A <span>Three.Js</span> Experience</div>
     </header>
     <footer>
-      <button class="button">Click Me</button>
+      <ul>
+        <li>Left + Mouse to Rotate view</li>
+        <li>Scroll to zoom</li>
+        <li>Right + mouse to pan</li>
+      </ul>
+
+      <div class="bottle-selector">
+        <div class="selector-container">
+          <img
+            src="./static/Images/RedMetalBottleRender.png"
+            id="change-red-metal"
+            alt=""
+          />
+          <img
+            src="./static/Images/MusgraveBottleRender.png"
+            id="change-musgrave"
+            alt=""
+          />
+          <img
+            src="./static/Images/FiberBottleRender.png"
+            id="change-fabric"
+            alt=""
+          />
+        </div>
+      </div>
+
+      <div class="btn-container">
+        <button class="button">Shop</button>
+      </div>
     </footer>
     <canvas class="webgl"></canvas>
     <script type="module" src="/main.js"></script>

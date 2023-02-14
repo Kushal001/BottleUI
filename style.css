@@ -12,7 +12,6 @@ body {
   font-family: "Satoshi", sans-serif;
   font-weight: 600;
   font-size: 14px;
-  /* padding: 32px; */
 }
 
 /* WebGL */
@@ -60,11 +59,85 @@ header {
 
 /* Footer */
 footer {
-  pointer-events: none;
   padding: 32px;
   padding-top: 0;
   position: absolute;
   bottom: 0;
   width: 100%;
   z-index: 2;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer ul li {
+  list-style: none;
+}
+
+footer ul li:not(:last-child) {
+  margin-bottom: 4px;
+}
+
+footer > * {
+  width: 500px;
+}
+
+.bottle-selector {
+  height: 100px;
+}
+
+.selector-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selector-container img {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+
+  transition: all 0.2s ease-in;
+}
+
+.selector-container img:hover {
+  border: 2px solid #000;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.selector-container img:not(:last-child) {
+  margin-right: 20px;
+}
+
+.btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+footer button {
+  background: #fff;
+  outline: none;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 50px;
+
+  transition: all 0.2s;
+}
+
+footer button:active,
+footer button:link {
+  outline: none;
+}
+
+footer button:hover {
+  color: #fff;
+  background: #000;
+  transform: scale(1.1);
 }
