@@ -118,8 +118,8 @@ footer > * {
   justify-content: flex-end;
 }
 
-footer button {
-  background: #fff;
+/* Button */
+.button {
   outline: none;
   border: none;
   border-radius: 100px;
@@ -131,17 +131,108 @@ footer button {
   transition: all 0.2s;
 }
 
-footer button:active,
-footer button:link {
+.button:active,
+.button:link {
   outline: none;
 }
 
-footer button:hover {
+.button:hover {
   color: #fff;
   background: #000;
   transform: scale(1.1);
 }
 
-.bottle-UI-components {
+.btn-primary {
+  background: #000;
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #fff;
+  color: #000;
+}
+
+.btn-tertiary {
+  background: #e6e5ea;
+}
+
+.btn-checkout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24px;
+}
+
+/* Bottle info */
+
+.bottle-info {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: calc(100vw / 2);
+  padding: 32px;
+}
+
+.bottle-info h1 {
+  font-size: 96px;
+  font-weight: 600;
+  text-transform: capitalize;
+  line-height: 128%;
+  margin: 0;
+  margin-top: 32px;
+  margin-bottom: 42px;
+}
+
+.description {
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+  margin-bottom: 24px;
+}
+
+.description > * {
+  width: 50%;
+}
+
+.description > *:first-child {
+  margin-right: 48px;
+}
+
+.descriptions-top p {
+  font-weight: 400;
+  color: #717171;
+}
+
+.detail-box .header {
+  font-weight: 400;
+  color: #b0b0b0;
+  text-transform: capitalize;
+  margin-bottom: 8px;
+}
+
+/* UI when bottle info is shown */
+
+.shop-ui {
+  z-index: 2;
+  position: absolute;
+  bottom: 69px;
+  display: block;
+  width: calc(100vw / 2);
+  text-align: center;
+
   display: none;
+}
+
+.view-3d-btn {
+  padding: 8px 24px;
+  border-radius: 33px;
+}
+
+.checkout-btns {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  margin-top: 120px;
 }

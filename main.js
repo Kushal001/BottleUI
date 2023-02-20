@@ -4,11 +4,7 @@ import "normalize.css"
 import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
-import * as dat from "dat.gui"
 import gsap from "gsap"
-
-// Debug
-// const gui = new dat.GUI()
 
 /**
  * Base
@@ -90,13 +86,12 @@ gltfLoader.load("./static/Models/Bottle.glb", (gltf) => {
  * Sizes
  */
 const sizes = {
-  width: window.innerWidth / 2,
+  width: window.innerWidth,
   height: window.innerHeight,
 }
 
 window.addEventListener("resize", () => {
   // Update sizes
-  gsap.to(sizes)
   sizes.width = window.innerWidth
   sizes.height = window.innerHeight
 
@@ -109,11 +104,14 @@ window.addEventListener("resize", () => {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 })
 
-document.querySelector(".button").addEventListener("click", () => {
-  // Update sizes
-  sizes.width = window.innerWidth / 2
-  sizes.height = window.innerHeight
+const toggleUI = (ui3d, uiShop) => {
+  document.querySelector(".bottle-UI-components").style.display = ui3d
+  document.querySelector(".shop-ui").style.display = uiShop
+}
 
+const changeCanvasWidth = (width) => {
+  // Update sizes
+  sizes.width = width
   // Update camera
   camera.aspect = sizes.width / sizes.height
   camera.updateProjectionMatrix()
@@ -121,18 +119,21 @@ document.querySelector(".button").addEventListener("click", () => {
   // Update renderer
   renderer.setSize(sizes.width, sizes.height)
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+}
+
+document.querySelector(".btn-shop").addEventListener("click", () => {
+  changeCanvasWidth(window.innerWidth / 2)
 
   // Clear UI
-  clearUI()
+  toggleUI("none", "block")
 })
 
-const clearUI = () => {
-  document.querySelector(".bottle-UI-components").style.display = "none"
-}
+document.querySelector(".view-3d-btn").addEventListener("click", () => {
+  changeCanvasWidth(window.innerWidth)
 
-function lerp(start, end, amt) {
-  return (1 - amt) * start + amt * end
-}
+  // Clear UI
+  toggleUI("block", "none")
+})
 
 /**
  * Camera
@@ -147,11 +148,6 @@ const camera = new THREE.PerspectiveCamera(
 
 camera.position.set(0, 0.25, 3.5)
 scene.add(camera)
-
-// Debug
-// gui.add(camera.position, "x").min(0).max(20).step(0.25).name("XCameraPosition")
-// gui.add(camera.position, "y").min(0).max(20).step(0.25).name("YCameraPosition")
-// gui.add(camera.position, "z").min(0).max(20).step(0.25).name("ZCameraPosition")
 
 // Controls
 const controls = new OrbitControls(camera, canvas)
