@@ -5,6 +5,7 @@ import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import gsap from "gsap"
+import BottleGlb from "./static/Models/Bottle.glb"
 
 /**
  * Base
@@ -72,7 +73,7 @@ const changeMaterial = (type = "red-metal", texture = bakedRedMetalTexture) => {
  */
 const gltfLoader = new GLTFLoader()
 
-gltfLoader.load("./Bottle.glb", (gltf) => {
+gltfLoader.load(BottleGlb, (gltf) => {
   gltf.scene.traverse((child) => {
     child.material = bakedMaterial
     // child.material.needsUpdate = true
