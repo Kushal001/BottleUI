@@ -5,6 +5,7 @@ import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import * as dat from "dat.gui"
+import gsap from "gsap"
 
 // Debug
 // const gui = new dat.GUI()
@@ -89,12 +90,13 @@ gltfLoader.load("./static/Models/Bottle.glb", (gltf) => {
  * Sizes
  */
 const sizes = {
-  width: window.innerWidth,
+  width: window.innerWidth / 2,
   height: window.innerHeight,
 }
 
 window.addEventListener("resize", () => {
   // Update sizes
+  gsap.to(sizes)
   sizes.width = window.innerWidth
   sizes.height = window.innerHeight
 
@@ -106,6 +108,31 @@ window.addEventListener("resize", () => {
   renderer.setSize(sizes.width, sizes.height)
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 })
+
+document.querySelector(".button").addEventListener("click", () => {
+  // Update sizes
+  sizes.width = window.innerWidth / 2
+  sizes.height = window.innerHeight
+
+  // Update camera
+  camera.aspect = sizes.width / sizes.height
+  camera.updateProjectionMatrix()
+
+  // Update renderer
+  renderer.setSize(sizes.width, sizes.height)
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+  // Clear UI
+  clearUI()
+})
+
+const clearUI = () => {
+  document.querySelector(".bottle-UI-components").style.display = "none"
+}
+
+function lerp(start, end, amt) {
+  return (1 - amt) * start + amt * end
+}
 
 /**
  * Camera

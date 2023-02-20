@@ -141,3 +141,7 @@ footer button:hover {
   background: #000;
   transform: scale(1.1);
 }
+
+.bottle-UI-components {
+  display: none;
+}
