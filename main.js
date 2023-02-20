@@ -72,7 +72,7 @@ const changeMaterial = (type = "red-metal", texture = bakedRedMetalTexture) => {
  */
 const gltfLoader = new GLTFLoader()
 
-gltfLoader.load("./static/Models/Bottle.glb", (gltf) => {
+gltfLoader.load("./Bottle.glb", (gltf) => {
   gltf.scene.traverse((child) => {
     child.material = bakedMaterial
     // child.material.needsUpdate = true
