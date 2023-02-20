@@ -236,3 +236,17 @@ footer > * {
 
   margin-top: 120px;
 }
+
+@media only screen and (max-width: 600px) {
+  .bottle-UI-components {
+    display: none;
+  }
+
+  .shop-ui {
+    display: none;
+  }
+
+  .bottle-info {
+    display: none;
+  }
+}
